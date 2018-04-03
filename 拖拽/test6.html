@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		#target {
+			width: 400px;
+			height: 400px;
+			border: 1px solid black;
+		}
+
+		.prod {
+			width: 400px;
+			height: 100px;
+			text-align: center;
+		} 
+
+		span {
+			color: white;
+			font-size: 20px;
+		}
+		
+		#prod1 {
+			background-color: #00adf3; 
+		}
+
+		#prod2 {
+			background-color: #1d2f5f; 
+		}
+
+		#prod3 {
+			background-color: #ff0000; 
+		}
+
+		#prod4 {
+			background-color: #00ff1b; 
+		}
+
+		#price {
+			width: 400px;
+			height: 50px;
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+		}
+
+		#number {
+			width: 400px;
+			height: 50px;
+			border: 1px solid black;
+			
+		}
+
+		.name1 {
+			color: black;
+		}
+
+		.price1 {
+			color: black;
+		}
+
+		.number1 {
+			color: black;
+		}
+	</style>
+	<body>
+
+	<div id="prod1" class="prod" draggable="true" ondragstart="drag(event)">
+		<span class="name">知识百科全书</span>
+		<span class="price">30</span>
+		<span class="number">1</span>
+	</div>
+	<div id="prod2" class="prod" draggable="true" ondragstart="drag(event)">
+			<span class="name">学好javascript</span>
+			<span class="price">60</span>
+			<span class="number">1</span>
+	</div>
+	<div id="prod3" class="prod" draggable="true" ondragstart="drag(event)">
+			<span class="name">历史长河</span>
+			<span class="price">130</span>
+			<span class="number">1</span>
+	</div>
+	<div id="prod4" class="prod" draggable="true" ondragstart="drag(event)">
+			<span class="name">儿童故事</span>
+			<span class="price">10</span>
+			<span class="number">1</span>
+	</div>	
+
+	<br>
+	<div id="target" ondrop="finalDrop(event)" ondragover="allowDrop(event)">
+	</div>
+	<div id="price">
+			<span class="name1">价格</span>
+			<span class="price1"></span>
+	</div> 
+	<div id="number" >
+			<span class="name1">数量</span>
+			<span class="number1"></span>
+	</div> 
+	</body>	
+	<script>
+
+		var totP =  document.querySelector('.price1').innerHTML; 
+		var totN =  document.querySelector('.number1').innerHTML;  
+		var value  = 0; 
+		var number1 = 0; 
+
+
+	
+
+
+		function drag(ev){
+
+
+			ev.dataTransfer.setData('pro',ev.target.id); 
+			
+			// console.log(price); 
+			
+		
+		}; 
+
+		function allowDrop(ev) {
+			ev.preventDefault(); 
+		}
+
+		function finalDrop(ev) {
+			ev.preventDefault(); 
+			var data = ev.dataTransfer.getData('pro'); 
+	
+			ev.target.appendChild(document.getElementById(data)); 
+
+			var priceString = document.getElementById(data).childNodes[3].innerHTML; 
+
+			var numberString = document.getElementById(data).childNodes[5].innerHTML; 
+
+			var price = parseInt(priceString); 
+			var number = parseInt(numberString); 
+
+			console.log(number);
+
+
+
+			value += price;  
+			number1 += number; 
+
+			// console.log( totP1);
+
+			document.querySelector('.price1').innerHTML = value; 
+			document.querySelector('.number1').innerHTML = number1;
+			
+		
+		}
+
+
+	</script>
+</html>

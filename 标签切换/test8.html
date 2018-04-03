@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>信息切换</title>
+<style>
+	*{margin:0;padding:0;}
+	body{font-size:14px;}
+	ul{list-style:none;}
+	#container{width:1000px;margin:150px auto;}
+	#header{border-bottom:3px solid #F60;height:30px;}
+	#header li{font-weight:bolder;float:left;height:30px;width:80px;text-align:center;line-height:30px;}
+	#header li:hover{cursor:pointer;}
+	#header .sec{background:#f60;color:#fff;}
+	#listContent li{font-size:16px;line-height:30px;height:30px;}
+	#tips{padding: 5px; position: absolute;left:0;top:0;width: 400px;border: 2px solid #FF7700; background-color: white;display:none;}
+	#tips li{list-style:none;font-size:16px;height:30px;line-height:30px;}
+	#tips li.col{width:180px;height: 30px; float: left;line-height: 30px; border-bottom: 1px solid #CCC;}
+</style>
+<script type="text/javascript" src="datas.js" ></script>
+<script>
+	window.onload=function(){
+		
+		var tabH = document.getElementById("header");
+		var tabCon = document.getElementById("container");
+		var mainCon = document.getElementById("listContent");
+		var tipH = document.getElementById("tips");
+		var tipCon = document.getElementById("tipsContent"); 
+
+		for(var i=0; i<data.length; i++){
+			tabH.innerHTML += "<li>"+data[i].name+"</li>"; 
+
+		}
+		
+		var lis = tabH.getElementsByTagName("li"); 
+		lis[0].className = 'sec'; 
+
+		console.log(lis.length); 
+
+		for(var i=0;i<lis.length;i++){
+			lis[i].index=i;
+			lis[i].onclick=function(){
+				for(var j=0;j<lis.length;j++){
+					lis[j].className="";
+					tipH.innerHTML="";
+					tipCon.innerHTML="";
+				}
+				this.className="sec";
+
+				add(data[this.index]);
+			}
+		}
+
+		add(data[0]);
+
+		function add(da) {
+			for(var i=0; i<da.list.length; i++){
+				var ul=document.createElement("ul");
+				var li=document.createElement("li");
+				var a=document.createElement("a"); 
+				a.href="javascript:";
+				a.innerHTML = da.list[i].title; 
+				li.appendChild(a); 
+				ul.appendChild(li);
+				mainCon.appendChild(ul); 
+
+				a.index = i; 
+		
+
+				var h4 = document.createElement('h4');						
+					var lis1 = document.createElement('li');						
+					lis1.className = 'col';
+					var lis2 = document.createElement('li');						
+					lis2.className = 'col';
+					var lis3 = document.createElement('li');						
+					lis3.className = 'col';
+					var lis4 = document.createElement('li');						
+					lis4.className = 'col';
+					var lis5 = document.createElement('li');						
+					lis5.className = 'col';
+					var lis6 = document.createElement('li');						
+					lis6.className = 'col';
+				
+				a.onmouseover = function() {
+					tipH.style.display = 'block'; 
+					tipH.style.left=mainCon.offsetLeft+this.offsetWidth+10+'px';
+					tipH.style.top=this.offsetTop+this.scrollTop+'px'; 
+
+					h4.innerHTML = da.list[this.index].company; 
+					lis1.innerHTML = da.list[this.index].position;
+					lis2.innerHTML = da.list[this.index].recruitingNumbers;
+					lis3.innerHTML = da.list[this.index].workExperience;
+					lis4.innerHTML = da.list[this.index].education;
+					lis5.innerHTML = da.list[this.index].wage;
+					lis6.innerHTML = da.list[this.index].addDate;
+
+					tipCon.appendChild(h4);
+					tipCon.appendChild(lis1);
+					tipCon.appendChild(lis2);
+					tipCon.appendChild(lis3);
+					tipCon.appendChild(lis4);
+					tipCon.appendChild(lis5);
+					tipCon.appendChild(lis6);
+				}
+
+				a.onmouseout=function(){
+					tipH.style.display="none";
+				}
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="container">
+		<ul id="header"></ul>
+		<div id="listContent"></div>
+	</div>
+	<div id="tips">
+		<span id="arrow"></span>
+        <div id="tipsContent"></div>
+	</div>
+</body>
+</html>
