@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>鼠标画图</title>
+<style>
+	body{ background:#CCC;text-align:center;}
+	div{margin:50px auto;width:200px;}
+	#can{ background:white;margin-top:-50px;display:inline-block;}
+</style>
+<script>
+window.onload = function(){
+	var drawButton = document.querySelector('#draw'); 
+	var resetButton = document.querySelector('#reset'); 
+
+	var can = document.querySelector('#can');
+	var draw = can.getContext('2d'); 
+
+	resetButton.onclick = function() {
+		draw.clearRect(0,0,can.width,can.height);
+	}
+
+	can.onmousedown = function(ev) {
+		var ev=ev||event;
+		draw.moveTo(ev.clientX-can.offsetLeft, ev.clientY-can.offsetTop);
+
+		document.onmousemove = function(ev) {
+			var ev=ev||event;
+			draw.lineTo(ev.clientX-can.offsetLeft, ev.clientY-can.offsetTop);
+			draw.stroke();
+		}
+
+		document.onmouseup = function() {
+			document.onmousedown=document.onmousemove=null;
+		}
+	}
+
+}
+</script>
+</head>
+<body>
+	<div>
+    	<input id="draw" type="button" value="画图"/>
+    	<input id="reset" type="button" value="重画"/>
+    </div>
+	<canvas id="can" width="500px" height="500px"></canvas>
+</body>
+</html>
