@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0px; 
+            padding: 0px;
+        }
+
+        #tab {
+            margin: 0 auto;
+            width: 1000px;
+        }
+
+        .alltab {
+            width: 50px; 
+            height: 20px;
+            display: inline-block;
+            border-left: 1px solid black;
+            border-top: 1px solid black;
+            text-align: center;
+        }
+
+        div.tab3 {
+            border-right: 1px solid black;
+        }
+        .content {
+            clear: both;
+            width: 152px;
+            height: 150px;
+            border: 1px solid black;
+            color: black;
+        }
+
+        .high {
+            background: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tab">
+        <div class="alltab tab1">标签1</div>
+        <div class="alltab tab2">标签2</div>
+        <div class="alltab tab3">标签3</div>
+        <div class="content"></div>
+    </div>
+</body>
+
+<script>
+    var tabW = document.getElementsByClassName('alltab'); 
+    // var content1 = document.getElementsByClassName("content");
+    var content1 = document.getElementsByClassName("content").innerHTML;
+    
+    for(var i=0; i<tabW.length; i++) {
+        tabW[i].onclick = function(){
+           
+            for(var j=0; j<tabW.length; j++) {  
+                tabW[j].classList.remove('high');
+               
+            }
+            this.classList.add('high'); 
+
+
+             
+            content1 = this.innerHTML + '内容'; 
+            // content1 = content;
+           console.log(content1);
+        }
+    }
+</script>
+</html>
