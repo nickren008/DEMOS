@@ -5,8 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body {
+            margin: 0px; 
+            padding: 0px;
+        }
+
+        #all {
+            width: 300px; 
+            height: 500px;
+            border: 1px solid black;
+            text-align: center;
+            margin: 0 auto;
+            background: gray
+        }
+        
+        #wrap {
+            margin-top: 20px;
+           
+        }
+
+        li {
+            text-align: left;
+            width: 250px;
+        }
+    </style>
 </head>
 <body>
-    
+    <div id="all">
+    <div id="wrap">
+    <input id="content">
+    <input type="button" id="message" value="留言">
+    <input type="button" id="delete" value="删除所有"> 
+    </div>
+    </div>
+
 </body>
+<script>
+    var message = document.getElementById("message"); 
+    var content = document.getElementById("content"); 
+    var wrap = document.getElementById("wrap"); 
+    var deleteBtn = document.getElementById("delete"); 
+
+  
+
+    message.addEventListener('click',function(){
+
+        console.log(content.value);
+        if(content.value != ""){
+        var list = document.createElement("li"); 
+        list.innerHTML = content.value; 
+        wrap.appendChild(list);  
+
+        var dele = document.createElement("input"); 
+        dele.setAttribute("class","dele");
+        dele.type = 'button'; 
+        dele.value = "删除";
+        list.appendChild(dele);
+
+        // console.log(content.innerHTML);
+        }else{
+        alert('you have to input something');
+        } 
+
+        deleteBtn.addEventListener('click',function(){
+        if(list.length != 0) {
+            list.style.display = 'none';
+        }else {
+            return null;
+        }
+        })
+        
+        var deleBtn = document.getElementsByClassName('dele'); 
+        console.log(deleBtn.length);
+        for(var i=0; i<deleBtn.length; i++) {
+            deleBtn[i].onclick = function(){
+                this.parentNode.style.display = 'none';
+            }
+        }
+    })
+
+
+</script>
 </html>
