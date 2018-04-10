@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #checkbox {
+            margin: 0 auto;
+            width: 200px; 
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="checkbox">
+        
+        <label><input id="checkall" type="checkbox">全选</label>
+        <label><input id="uncheckall" type="checkbox">反选</label>
+
+        <p><label><input class="choice" type="checkbox">选项一</label></p>
+        <p><label><input class="choice" type="checkbox">选项二</label></p>
+        <p><label><input class="choice" type="checkbox">选项三</label></p>
+        <p><label><input class="choice" type="checkbox">选项四</label></p>
+        <p><label><input class="choice" type="checkbox">选项五</label></p>
+        <p><label><input class="choice" type="checkbox">选项六</label></p>
+    </div>
+</body>
+
+<script>
+    var checkAll = document.getElementById("checkall"); 
+    var uncheckAll = document.getElementById("uncheckall"); 
+    var input = document.getElementsByClassName("choice"); 
+
+    checkAll.addEventListener("click", function(){
+        for(var i=0; i<input.length; i++) {
+            input[i].checked= true; 
+            uncheckAll.checked = false;
+        }
+    })
+
+    uncheckAll.addEventListener("click", function(){
+        for(var i=0; i<input.length; i++) {
+            input[i].checked = !input[i].checked;
+            checkAll.checked = false;
+        }
+    })
+</script>
+</html>
