@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/green.css" />
+</head>
+<style>
+    .current {
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <input type="button" id="red">
+    <input type="button" id="black">
+    <input type="button" id="green">
+</body>
+
+<script>
+    var input = document.getElementsByTagName("input"); 
+    var link = document.getElementsByTagName("link")[0];
+
+    for(var i=0; i<input.length; i++) {
+        input[i].onclick = function() {
+            for(var j=0; j<input.length; j++) {
+                input[j].className = "";
+            }
+            this.className = "current";
+            link['href'] = "./css/" + this.id + ".css"
+            
+        }
+    }
+</script>
+</html>
