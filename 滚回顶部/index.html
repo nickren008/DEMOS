@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: none;
+        }
+
+        body {
+            background-color: #ccc;
+        }
+
+        p {
+            margin-bottom: 20px; 
+            text-align: center; 
+        }
+
+        #top {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            position: fixed;
+            right: 10px;
+            bottom: 30px;
+            display: none;
+        }
+    </style>
+    <script>
+        window.onload = function() { 
+            
+            var scrolltop = 0; 
+            var top = document.getElementById("top");
+            var begin = 0; 
+            var end = 0; 
+            var timer = null;
+
+            window.onscroll = function() {
+
+                scrolltop = document.documentElement.scrollTop; 
+                console.log(scrolltop);
+
+                if(scrolltop > 0) {
+                    show(top);
+                }else{
+                    hide(top);
+                }
+                begin = scrolltop;
+            }
+
+            
+            top.onclick = function() {
+
+                clearInterval(timer);
+
+                timer = setInterval(function(){
+                    begin = begin + (end-begin) / 20;
+                    window.scrollTo(0,begin);
+
+                    clearInterval(timer);
+
+                },20)
+            }
+
+             function show(ele) {
+                 ele.style.display = "block"; 
+            };
+
+            function hide(ele) {
+                 ele.style.display = "none"; 
+            }
+        }
+
+       
+    </script>
+</head>
+<body>
+    <span id="top"></span>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+</body>
+</html>

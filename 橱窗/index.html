@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0px; 
+        padding: 0px; 
+        list-style: none;
+        border: none;
+    }
+
+    #box {
+        width: 1000px; 
+        height: 360px;
+        border: 1px solid #ccc;
+        position: relative;
+        margin: 100px auto; overflow: hidden;
+       
+    }
+
+    #box ul {
+        width: 3600px;
+        position: absolute;
+        left: 0px; 
+        top: 0px;
+    }
+
+    #box ul li {
+        float: left;
+    }
+
+    #box_bottom {
+        position: absolute;
+        left: 0px;
+        bottom: 0px; 
+        background: #e8e8e8; 
+        width: 100%; 
+        height: 25px;
+    }
+
+    .mask {
+        position: absolute; 
+        left: 0px; 
+        top: 0px; 
+       
+        height: 25px;
+        background-color: orangered; 
+        border-radius: 10px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div id="box">
+        <ul id="box_top">
+            <li><img src="img/1.jpg" alt=""></li>
+            <li><img src="img/2.jpg" alt=""></li>
+            <li><img src="img/3.jpg" alt=""></li>
+            <li><img src="img/4.jpg" alt=""></li>
+            <li><img src="img/5.jpg" alt=""></li>
+            <li><img src="img/6.jpg" alt=""></li>
+            <li><img src="img/7.jpg" alt=""></li>
+            <li><img src="img/8.jpg" alt=""></li>
+            <li><img src="img/1.jpg" alt=""></li>
+            <li><img src="img/2.jpg" alt=""></li>
+        </ul>
+        <div id="box_bottom">
+            <span class="mask"></span>
+        </div>
+    </div>
+</body>
+
+<script>
+        window.onload = function() {
+            var box = document.getElementById("box"); 
+            var box_top = document.getElementById("box_top"); 
+            var box_bottom = document.getElementById("box_bottom"); 
+            var mask = box_bottom.children[0]; 
+
+            var masklength = (box.offsetWidth/box_top.offsetWidth)*box.offsetWidth; 
+            mask.style.width = masklength + 'px'; 
+
+            mask.onmousedown = function(event){
+                var e = event || window.event; 
+                var beginX = e.clientX - mask.offsetLeft; 
+                console.log(beginX,e.clientX,mask.offsetLeft);
+
+                document.onmousemove = function(event){
+                    var e = event || window.event; 
+                    var endx = e.clientX - beginX; 
+
+                    if(endx< 0) {
+                        endx = 0;
+                    }else if(endx > box.offsetWidth-mask.offsetWidth) {
+                        endx = box.offsetWidth-mask.offsetWidth
+                    }
+
+                    mask.style.left = endx + 'px'; 
+
+                    var contentlength = (box_top.offsetWidth - box.offsetWidth) / (box.offsetWidth - mask.offsetWidth) * endx; 
+                    box_top.style.left = -contentlength + "px";
+                    return false; 
+                }
+
+                 document.onmouseup = function(){
+                    document.onmousemove = null;
+                 }
+            }
+        }
+    </script>
+</html>

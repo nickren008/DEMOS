@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        #name {
+            margin-top: 20px; 
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var begin = document.getElementById("begin");
+            var end = document.getElementById("end");
+            var name = document.getElementById("name"); 
+
+            var arr = ["nick","damn","fuck","jay","xie","anan"]; 
+
+            name.innerHTML = arr[0]; 
+
+            var timer = null;
+            var index = 0;
+
+            begin.onclick = function() {
+                timer = setInterval(function(){
+                    index += 1; 
+                    name.innerHTML = arr[index]; 
+
+                    if(index == arr.length) {
+                        index = 0;
+                    }
+
+                },500)
+            }
+
+            end.onclick = function() {
+                clearInterval(timer);
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="begin">开始点名</button>
+    <button id="end">结束点名</button>
+    <div id="name">
+        张三
+    </div>
+</body>
+</html>
